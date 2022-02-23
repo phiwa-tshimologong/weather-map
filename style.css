@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600&display=swap');
+
+
+*{
+    font-family: Montserrat, sans;
+    margin: 0;
+    padding: 0;
+}
+nav{
+    font-size: 2.5rem;
+    padding: 0.8rem 5%;
+    background-color: #5a3b01;
+    color: #fff;
+}
+.current{
+    padding: 2rem 5%;
+    
+}
+.current-location {
+    display: flex;
+    border-bottom: 1px solid red;
+} 
+.current-location div{
+    display: flex;
+} 
+
+.current-location i, 
+.current-location .location-name{
+    font-size: 6rem;
+    margin-right: 0.8rem;
+}
+
+.temp{
+    display: block;
+    font-size: 6rem;
+    margin-left: auto;
+
+}
+.current-icon{
+    margin-left: auto;
+    
+}
