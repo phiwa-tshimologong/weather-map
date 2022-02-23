@@ -22,21 +22,26 @@ nav{
 } 
 .current-location div{
     display: flex;
+}
+.current-location i{
+    border-left: 1px solid red;
+    padding-left: 2rem;
 } 
 
 .current-location i, 
 .current-location .location-name{
-    font-size: 6rem;
+    font-size: 2rem;
     margin-right: 0.8rem;
+    height: max-content;
 }
 
 .temp{
     display: block;
-    font-size: 6rem;
-    margin-left: auto;
-
+    font-size: 2rem;
+    padding-right: 1rem;
 }
 .current-icon{
-    margin-left: auto;
+    width: 50px;
+    height: 50px;
     
 }
