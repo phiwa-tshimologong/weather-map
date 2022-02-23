@@ -27,19 +27,16 @@ const fetchData = (url) => {
         .then(res => res.json())
         .then(data => {
             console.log(data.current.weather[0].icon)
-            handleWeather(data);
-            let iconId = data.current.weather[0].icon;
-            let iconUrl = "http://openweathermap.org/img/w/" + iconId + ".png"
-            showIcon.src = iconUrl;
+            handleCurrentWeather(data);
         })
         .catch(e => console.log(e.message))
 }
 
-const handleWeather = (data) => {
+const handleCurrentWeather = (data) => {
     let location = data.timezone;
-    console.log(location)
+    let iconId = data.current.weather[0].icon;
+    let iconUrl = "http://openweathermap.org/img/w/" + iconId + ".png";
     currentLocation.innerHTML = location;
-
-
+    showIcon.src = iconUrl;
 }
 window.onload = getLocation();
