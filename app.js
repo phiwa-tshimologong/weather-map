@@ -23,6 +23,7 @@ const getLocation = () => {
 const storeLocation = (pos) => {
     let lat = pos.coords.latitude;
     let lon = pos.coords.longitude;
+    console.log(`lat ${lat} \nlon ${lon}`)
     let tempUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API_KEY}`;
     let locationUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`;
     fetchData(tempUrl);
