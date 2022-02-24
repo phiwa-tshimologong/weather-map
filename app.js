@@ -10,7 +10,7 @@ const currentLocation = document.getElementById('currentLocation');
 const showIcon = document.getElementById('showIcon');
 const currentTemp = document.getElementById('currentTemp');
 const feelsLike = document.getElementById('feelsLike');
-
+const description = document.getElementById('description');
 
 // get Lat and Long
 const getLocation = () => {
@@ -44,19 +44,23 @@ const fetchData = (url) => {
         .then(res => res.json())
         .then(data => {
             handleWeather(data);
-            let iconId = data.current.weather[0].icon;
-            let iconUrl = "http://openweathermap.org/img/w/" + iconId + ".png"
-            showIcon.src = iconUrl;
+           
         })
         .catch(e => console.log(e.message))
 }
 
 const handleWeather = (data) => {
+    let iconId = data.current.weather[0].icon;
+    let iconUrl = "http://openweathermap.org/img/w/" + iconId + ".png"
+    showIcon.src = iconUrl;
+
     let temp = `${convertToDeg(data.current.temp)}&deg;`;
-    let feel = `Feels Like ${convertToDeg(data.current.feels_like)}&deg;`;
+    let feel = `Feels Like ${convertToDeg(data.current.feels_like)}&deg;,`;
+    let desc = data.current.weather[0].description;
+
     currentTemp.innerHTML = temp;
     feelsLike.innerHTML = feel;
-
+    description.innerHTML = desc;
 }
 
 const convertToDeg = (kelvin) => {

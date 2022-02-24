@@ -62,7 +62,13 @@ nav h1{
     border: none;
 }
 /* ______________ */
-.feels-like{
+.desc{
     font-size: 1.5rem;
-
+    display: flex;
+}
+.feels-like{
+    margin-right: 1rem;
+}
+.description{
+    text-transform: capitalize;
 }
