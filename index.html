@@ -12,11 +12,13 @@
     <header>
         <nav>
             <h1>Weather</h1>
+            <h1 class="clock" id="clock"></h1>
         </nav>
     </header>
     <main>
         
         <section class="current">
+
             <div class="current-location">
                 <div class="temp">
                     <img src="" alt="" id="showIcon" class="current-icon">
@@ -27,6 +29,24 @@
                 
                 <div class="feels-like">Feels like</div>
             </div>
+
+            <div class="current-info">
+                <div class="current-location">
+                    <div class="temp">
+                        <img src="https://img.icons8.com/cotton/64/000000/partly-cloudy-day--v1.png" alt="" id="showIcon" class="current-icon">
+                        <h2 id="currentTemp">00</h2>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h2 class="location-name" id="currentLocation"></h2>
+                    </div>
+                </div>
+                <div class="desc">
+                    <p class="feels-like" id="feelsLike"></p>
+                </div>
+            </div>
+           
+
             
         </section>
        
