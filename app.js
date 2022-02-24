@@ -25,7 +25,7 @@ const storeLocation = (pos) => {
 const fetchData = (url) => {
     fetch(url)
         .then(res => res.json())
-        .then(data => {
+        .then(data => { 
             console.log(data.current.weather[0].icon)
             handleCurrentWeather(data);
         })
