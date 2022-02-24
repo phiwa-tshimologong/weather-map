@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600&display=swap');
-
+@font-face {
+    font-family: 'digital';
+    src: url('./assets/fonts/digital.ttf');
+    
+}
 
 *{
     font-family: Montserrat, sans;
@@ -18,6 +22,8 @@ nav h1{
 }
 .clock{
     float: right;
+    letter-spacing: 0.2ch;
+    
 }
 .current{
     padding: 2rem 5%;
@@ -25,7 +31,8 @@ nav h1{
 }
 .current-location {
     display: flex;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #002261;
+    margin-bottom: 0.8rem;
 } 
 .current-location div{
     display: flex;
@@ -44,11 +51,18 @@ nav h1{
 
 .temp{
     display: block;
-    font-size: 2rem;
     padding-right: 1rem;
+}
+.temp h2{
+    font-size: 2rem;
 }
 .current-icon{
     width: 50px;
     height: 50px;
     border: none;
+}
+/* ______________ */
+.feels-like{
+    font-size: 1.5rem;
+
 }
