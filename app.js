@@ -1,8 +1,9 @@
 // fire get location function
 
 const currentLocation = document.getElementById('currentLocation');
-const showIcon = document.getElementById('showIcon')
-
+const showIcon = document.getElementById('showIcon');
+const currentTemp = document.getElementById('currentTemp');
+const feelsLike = document.getElementById('feelsLike');
 
 
 // get Lat and Long
@@ -17,8 +18,18 @@ const storeLocation = (pos) => {
     let lat = pos.coords.latitude;
     let lon = pos.coords.longitude;
     let tempUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API_KEY}`;
+    let locationUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${-26.12223911073801}&lon=${27.89586220554027}&limit=5&appid=${API_KEY}`;
     fetchData(tempUrl);
-    console.log(`lat ${lat} \n lon ${lon}`)
+    fetchCurrentLocation(locationUrl);
+}
+const fetchCurrentLocation = locationUrl => {
+    fetch(locationUrl)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            let location = data[0].name;
+            currentLocation.innerHTML = location;
+        })
 }
 
 // request data from OpenWeatherMap
@@ -26,7 +37,6 @@ const fetchData = (url) => {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            console.log(data.current.weather[0].icon)
             handleWeather(data);
             let iconId = data.current.weather[0].icon;
             let iconUrl = "http://openweathermap.org/img/w/" + iconId + ".png"
@@ -36,10 +46,14 @@ const fetchData = (url) => {
 }
 
 const handleWeather = (data) => {
-    let location = data.timezone;
-    console.log(location)
-    currentLocation.innerHTML = location;
+    let temp = `${convertToDeg(data.current.temp)}&deg;`;
+    let feel = `Feels Like ${convertToDeg(data.current.feels_like)}&deg;`;
+    currentTemp.innerHTML = temp;
+    feelsLike.innerHTML = feel;
 
+}
 
+const convertToDeg = (kelvin) => {
+    return Math.round(kelvin - 273.15);
 }
 window.onload = getLocation();
