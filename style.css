@@ -9,8 +9,15 @@
 nav{
     font-size: 2.5rem;
     padding: 0.8rem 5%;
-    background-color: #5a3b01;
+    background-color: #002261;
     color: #fff;
+    display: block;
+}
+nav h1{
+    display: inline;
+}
+.clock{
+    float: right;
 }
 .current{
     padding: 2rem 5%;

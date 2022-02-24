@@ -1,4 +1,10 @@
-// fire get location function
+const clock = document.getElementById('clock');
+
+setInterval(() => {
+    let currentTime = new Date().toLocaleTimeString('en-ZA', {hour12: false});
+    clock.innerHTML = currentTime;
+},[1000]);
+// _____________________________
 
 const currentLocation = document.getElementById('currentLocation');
 const showIcon = document.getElementById('showIcon');
@@ -18,7 +24,7 @@ const storeLocation = (pos) => {
     let lat = pos.coords.latitude;
     let lon = pos.coords.longitude;
     let tempUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API_KEY}`;
-    let locationUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${-26.12223911073801}&lon=${27.89586220554027}&limit=5&appid=${API_KEY}`;
+    let locationUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`;
     fetchData(tempUrl);
     fetchCurrentLocation(locationUrl);
 }
@@ -26,8 +32,7 @@ const fetchCurrentLocation = locationUrl => {
     fetch(locationUrl)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            let location = data[0].name;
+            let location = `${data[0].name}, ${data[0].country}`;
             currentLocation.innerHTML = location;
         })
 }
