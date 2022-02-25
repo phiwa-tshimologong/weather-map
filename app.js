@@ -1,4 +1,5 @@
 'use strict';
+
 const clock = document.getElementById('clock');
 
 setInterval(() => {
@@ -12,6 +13,7 @@ const showIcon = document.getElementById('showIcon');
 const currentTemp = document.getElementById('currentTemp');
 const feelsLike = document.getElementById('feelsLike');
 const description = document.getElementById('description');
+const hourlyForecast = document.getElementById('hourlyForecast');
 
 // get Lat and Long
 const getLocation = () => {
@@ -64,9 +66,23 @@ const handleWeather = (data) => {
   currentTemp.innerHTML = temp;
   feelsLike.innerHTML = feel;
   description.innerHTML = `${mainDesc} - ${desc}`;
+
+  getHourlyWeather(data.hourly);
 };
 
 const convertToDeg = (kelvin) => {
   return Math.round(kelvin - 273.15);
+};
+
+const getHourlyWeather = hourly => {
+  for (let i = 1; i <= 12; i++) {
+    const timeStamp = new Date(hourly[i].dt * 1000).toLocaleTimeString('en-ZA');
+    // some heavy dom shit going on
+    const hourlyContainer = document.createElement('div');
+    hourlyContainer.classList.add('hourly-container');
+    hourlyContainer.appendChild(document.createTextNode(timeStamp));
+    hourlyForecast.appendChild(hourlyContainer);
+    console.log(timeStamp);
+  };
 };
 window.onload = getLocation();

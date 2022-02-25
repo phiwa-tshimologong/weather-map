@@ -71,3 +71,13 @@ nav h1{
 .description{
     text-transform: capitalize;
 }
+.hourly-forecast{
+    display: flex;
+    margin: 1rem 0;
+}
+.hourly-container{
+    width: max-content;
+    margin: 1rem;
+    padding: 0.8rem;
+    background-color: red;
+}
