@@ -73,11 +73,27 @@ nav h1{
 }
 .hourly-forecast{
     display: flex;
-    margin: 1rem 0;
+    margin: 2rem 0;
 }
 .hourly-container{
-    width: max-content;
-    margin: 1rem;
-    padding: 0.8rem;
-    background-color: red;
+    width: 9rem;
+    margin-right: 1rem;
+    /* padding: 0.5rem; */
+    background-color: #f1f1f1;
+    border-radius: 0.5rem;
+}
+.hourly-container:last-child{
+    margin-right: 0;
+}
+.hourly-container h2{
+    background-color: #0c2343;
+    padding: 0.2rem 0.5rem;
+    color: #fff;
+    border-radius: 0.5rem 0.5rem 0 0;
+    font-weight: 400;
+}
+.show-hourly-temp{
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 0.5rem;
 }
