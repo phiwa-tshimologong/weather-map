@@ -2,7 +2,6 @@
 @font-face {
     font-family: 'digital';
     src: url('./assets/fonts/digital.ttf');
-    
 }
 
 *{
@@ -13,7 +12,7 @@
 nav{
     font-size: 2.5rem;
     padding: 0.8rem 5%;
-    background-color: #002261;
+    background-color: #0c2343;
     color: #fff;
     display: block;
 }
@@ -31,7 +30,7 @@ nav h1{
 }
 .current-location {
     display: flex;
-    border-bottom: 1px solid #002261;
+    border-bottom: 1px solid #0c2343;
     margin-bottom: 0.8rem;
 } 
 .current-location div{

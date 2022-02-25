@@ -1,9 +1,10 @@
+'use strict';
 const clock = document.getElementById('clock');
 
 setInterval(() => {
-    let currentTime = new Date().toLocaleTimeString('en-ZA', {hour12: false});
-    clock.innerHTML = currentTime;
-},[1000]);
+  const currentTime = new Date().toLocaleTimeString('en-ZA', { hour12: false });
+  clock.innerHTML = currentTime;
+}, [1000]);
 // _____________________________
 
 const currentLocation = document.getElementById('currentLocation');
@@ -14,57 +15,58 @@ const description = document.getElementById('description');
 
 // get Lat and Long
 const getLocation = () => {
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(storeLocation);
-    }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(storeLocation);
+  }
 };
 
 // store postion
 const storeLocation = (pos) => {
-    let lat = pos.coords.latitude;
-    let lon = pos.coords.longitude;
-    console.log(`lat ${lat} \nlon ${lon}`)
-    let tempUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API_KEY}`;
-    let locationUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`;
-    fetchData(tempUrl);
-    fetchCurrentLocation(locationUrl);
-}
+  const lat = pos.coords.latitude;
+  const lon = pos.coords.longitude;
+  console.log(`lat ${lat} \nlon ${lon}`);
+  // eslint-disable-next-line no-undef
+  const tempUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API_KEY}`;
+  // eslint-disable-next-line no-undef
+  const locationUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`;
+  fetchData(tempUrl);
+  fetchCurrentLocation(locationUrl);
+};
 const fetchCurrentLocation = locationUrl => {
-    fetch(locationUrl)
-        .then(res => res.json())
-        .then(data => {
-            let location = `${data[0].name}, ${data[0].country}`;
-            currentLocation.innerHTML = location;
-        })
-}
+  fetch(locationUrl)
+    .then(res => res.json())
+    .then(data => {
+      const location = `${data[0].name}, ${data[0].country}`;
+      currentLocation.innerHTML = location;
+    });
+};
 
 // request data from OpenWeatherMap
 const fetchData = (url) => {
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            handleWeather(data);
-           
-        })
-        .catch(e => console.log(e.message))
-}
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      handleWeather(data);
+    })
+    .catch(e => console.log(e.message));
+};
 
 const handleWeather = (data) => {
-    let iconId = data.current.weather[0].icon;
-    let iconUrl = "http://openweathermap.org/img/w/" + iconId + ".png"
-    showIcon.src = iconUrl;
+  const iconId = data.current.weather[0].icon;
+  const iconUrl = `http://openweathermap.org/img/w/${iconId}.png`;
+  showIcon.src = iconUrl;
 
-    let temp = `${convertToDeg(data.current.temp)}&deg;`;
-    let feel = `Feels Like ${convertToDeg(data.current.feels_like)}&deg;,`;
-    let mainDesc = data.current.weather[0].main;
-    let desc = data.current.weather[0].description;
+  const temp = `${convertToDeg(data.current.temp)}&deg;`;
+  const feel = `Feels Like ${convertToDeg(data.current.feels_like)}&deg;,`;
+  const mainDesc = data.current.weather[0].main;
+  const desc = data.current.weather[0].description;
 
-    currentTemp.innerHTML = temp;
-    feelsLike.innerHTML = feel;
-    description.innerHTML = `${mainDesc} - ${desc}`;
-}
+  currentTemp.innerHTML = temp;
+  feelsLike.innerHTML = feel;
+  description.innerHTML = `${mainDesc} - ${desc}`;
+};
 
 const convertToDeg = (kelvin) => {
-    return Math.round(kelvin - 273.15);
-}
+  return Math.round(kelvin - 273.15);
+};
 window.onload = getLocation();
