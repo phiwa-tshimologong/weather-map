@@ -56,11 +56,12 @@ const handleWeather = (data) => {
 
     let temp = `${convertToDeg(data.current.temp)}&deg;`;
     let feel = `Feels Like ${convertToDeg(data.current.feels_like)}&deg;,`;
+    let mainDesc = data.current.weather[0].main;
     let desc = data.current.weather[0].description;
 
     currentTemp.innerHTML = temp;
     feelsLike.innerHTML = feel;
-    description.innerHTML = desc;
+    description.innerHTML = `${mainDesc} - ${desc}`;
 }
 
 const convertToDeg = (kelvin) => {
