@@ -88,7 +88,7 @@ const getHourlyWeather = hourly => {
 
     const showTemp = document.createElement('p');
     showTemp.classList.add('show-hourly-temp');
-    showTemp.innerHTML = `${temp}&deg;`;
+    showTemp.innerHTML = `${temp}&deg; | 😛`;
 
     hourlyContainer.appendChild(showTime);
     hourlyContainer.appendChild(showTemp);
