@@ -62,8 +62,9 @@ nav h1{
 }
 /* ______________ */
 .desc{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     display: flex;
+    font-weight: 500;
 }
 .feels-like{
     margin-right: 1rem;
@@ -76,7 +77,7 @@ nav h1{
     margin: 2rem 0;
 }
 .hourly-container{
-    width: 9rem;
+    width: 18rem;
     margin-right: 1rem;
     /* padding: 0.5rem; */
     background-color: #f1f1f1;

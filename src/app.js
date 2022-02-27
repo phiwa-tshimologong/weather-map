@@ -57,16 +57,15 @@ const handleWeather = (data) => {
   const iconId = data.current.weather[0].icon;
   const iconUrl = `http://openweathermap.org/img/w/${iconId}.png`;
   showIcon.src = iconUrl;
-
   const temp = `${convertToDeg(data.current.temp)}&deg;`;
   const feel = `Feels Like ${convertToDeg(data.current.feels_like)},`;
   const mainDesc = data.current.weather[0].main;
   const desc = data.current.weather[0].description;
-
   currentTemp.innerHTML = temp;
   feelsLike.innerHTML = feel;
   description.innerHTML = `${mainDesc} - ${desc}`;
 
+  // refresh hourly forecast every 60000 milliseconds
   getHourlyWeather(data.hourly);
 };
 
@@ -75,7 +74,7 @@ const convertToDeg = (kelvin) => {
 };
 
 const getHourlyWeather = hourly => {
-  for (let i = 1; i <= 12; i++) {
+  for (let i = 1; i <= 8; i++) {
     const timeStamp = new Date(hourly[i].dt * 1000).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
     const temp = convertToDeg(hourly[i].temp);
     // some heavy dom shit going on
