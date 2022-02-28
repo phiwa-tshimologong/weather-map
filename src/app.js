@@ -57,6 +57,8 @@ const handleWeather = (data) => {
   const iconId = data.current.weather[0].icon;
   const iconUrl = `http://openweathermap.org/img/w/${iconId}.png`;
   showIcon.src = iconUrl;
+  showIcon.alt = 'Current Weather Icon';
+
   const temp = `${convertToDeg(data.current.temp)}&deg;`;
   const feel = `Feels Like ${convertToDeg(data.current.feels_like)},`;
   const mainDesc = data.current.weather[0].main;
@@ -101,6 +103,7 @@ const getHourlyWeather = hourly => {
       showTime.innerHTML = timeStamp;
       showTemp.innerHTML = `${temp}&deg;`;
       showIcon.src = `http://openweathermap.org/img/w/${hourly[i].weather[0].icon}.png`;
+      showIcon.alt = 'Current Weather Icon';
       showDesc.innerHTML = hourly[i].weather[0].main;
     }, [1000]);
     hourlyContainer.appendChild(showTime);
