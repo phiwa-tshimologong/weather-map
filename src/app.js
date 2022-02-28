@@ -26,7 +26,7 @@ const getLocation = () => {
 const storeLocation = (pos) => {
   const lat = pos.coords.latitude;
   const lon = pos.coords.longitude;
-  console.log(`lat ${lat} \nlon ${lon}`);
+  // console.log(`lat ${lat} \nlon ${lon}`);
   // eslint-disable-next-line no-undef
   const tempUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API_KEY}`;
   // eslint-disable-next-line no-undef
@@ -61,11 +61,13 @@ const handleWeather = (data) => {
   const feel = `Feels Like ${convertToDeg(data.current.feels_like)},`;
   const mainDesc = data.current.weather[0].main;
   const desc = data.current.weather[0].description;
+  // setInterval(())
   currentTemp.innerHTML = temp;
   feelsLike.innerHTML = feel;
   description.innerHTML = `${mainDesc} - ${desc}`;
 
   // refresh hourly forecast every 60000 milliseconds
+
   getHourlyWeather(data.hourly);
 };
 
@@ -81,18 +83,29 @@ const getHourlyWeather = hourly => {
     // create a containing div
     const hourlyContainer = document.createElement('div');
     hourlyContainer.classList.add('hourly-container');
-    // create a p for paragraph
+    const hourlyTempIcon = document.createElement('div');
+    hourlyTempIcon.classList.add('hourly-temp-icon');
     const showTime = document.createElement('h2');
-    showTime.appendChild(document.createTextNode(timeStamp));
-
     const showTemp = document.createElement('p');
+    const showIcon = document.createElement('img');
+    const showDesc = document.createElement('p');
     showTemp.classList.add('show-hourly-temp');
-    showTemp.innerHTML = `${temp}&deg; | 😛`;
 
+    // append temperature and icon to hourly container;
+    hourlyTempIcon.appendChild(showTemp);
+    hourlyTempIcon.appendChild(showIcon);
+
+    // refresh text nodes;
+    setInterval(() => {
+      showTime.innerHTML = timeStamp;
+      showTemp.innerHTML = `${temp}&deg;`;
+      showIcon.src = `http://openweathermap.org/img/w/${hourly[i].weather[0].icon}.png`;
+      showDesc.innerHTML = hourly[i].weather[0].main;
+    }, [1000]);
     hourlyContainer.appendChild(showTime);
-    hourlyContainer.appendChild(showTemp);
+    hourlyContainer.appendChild(hourlyTempIcon);
+    hourlyContainer.appendChild(showDesc);
     hourlyForecast.appendChild(hourlyContainer);
-    console.log();
   };
 };
 window.onload = getLocation();
