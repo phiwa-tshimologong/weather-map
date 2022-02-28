@@ -61,10 +61,11 @@ const handleWeather = (data) => {
   const feel = `Feels Like ${convertToDeg(data.current.feels_like)},`;
   const mainDesc = data.current.weather[0].main;
   const desc = data.current.weather[0].description;
-  // setInterval(())
-  currentTemp.innerHTML = temp;
-  feelsLike.innerHTML = feel;
-  description.innerHTML = `${mainDesc} - ${desc}`;
+  setInterval(() => {
+    currentTemp.innerHTML = temp;
+    feelsLike.innerHTML = feel;
+    description.innerHTML = `${mainDesc} - ${desc}`;
+  }, [1000]);
 
   // refresh hourly forecast every 60000 milliseconds
 

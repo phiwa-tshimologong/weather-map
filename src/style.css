@@ -47,7 +47,10 @@ nav h1{
     margin-right: 0.8rem;
     height: max-content;
 }
-
+.pin-icon{
+    width: 40px;
+    height: 42px;
+}
 .temp{
     display: block;
     padding-right: 1rem;
